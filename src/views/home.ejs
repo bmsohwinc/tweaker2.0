@@ -1,0 +1,71 @@
+<%- include('header', {logout : true})%>
+<h2 class="to-center">Welcome <%= user.full_name %></h2>
+<div class="home-box-main">
+    <div class="home-box-main-left">  
+        <h3 class="to-center">Your Feed</h3>   
+        <%for (let tweet of followings_tweets) {%>
+            <div class="for-fulltweet-sub">
+                <div class="home-box-twt-meta">
+                    <span class="twt-meta-span">
+                        <b>
+                            <a href=<%= '/profile/' + tweet.user_id %>>
+                                <%= tweet.full_name %> &middot; @<%= tweet.user_name %>
+                            </a>
+                        </b>                        
+                    </span>
+                    <span class="twt-meta-span"><%= tweet.date_of_tweet.toISOString().slice(0, 10) %></span>
+                    <span class="twt-meta-span">Likes : <%= tweet.number_of_likes %></span>
+                </div>
+                <div class="for-fulltweet-sub">
+                    <p>
+                        <%= tweet.tweet_msg %>
+                    </p>
+                    <p style="text-align: right;"><a href=<%= '/full_tweet/' + tweet.tweet_id %>>More...</a></p>
+                </div>                
+            </div>    
+        <%}%>
+    </div>
+    <div class="home-box-main-right">
+        <div class="home-box-sub">   
+            <h3 class="to-center">Profile at a Glance</h3>
+            <table style="width: 100%;">
+                <tr>
+                    <td><b>Username</b></td>
+                    <td><%= user.user_name %></td>
+                </tr>
+                <tr>
+                    <td><b>Full name</b></td>
+                    <td><%= user.full_name %></td>                    
+                </tr>
+                <tr>
+                    <td><b>Place</b></td>
+                    <td><%= user.place %></td>                    
+                </tr>
+            </table> 
+            <p>More about you and your activity <a href=<%= '/profile/' + user.user_id %>>here</a></p>        
+        </div>
+        <div class="home-box-sub">
+            <h3 class="to-center">Suggestions</h3>
+            <table style="width: 100%;">
+                <tr>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>About</th>
+                </tr>
+                <%for (let indiv of suggested) {%>
+                    <tr>
+                        <td>
+                            <a href=<%= '/profile/' + indiv.user_id %>>
+                                <%= indiv.full_name %> &middot; @<%= indiv.user_name %>
+                            </a>
+                        </td>
+                        <td><%= indiv.place %></td>
+                        <td><%= indiv.about.substr(0, 15) %>... and more</td>
+                    </tr>
+                <%}%>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include('footer')%>

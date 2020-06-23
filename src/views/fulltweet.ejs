@@ -1,0 +1,52 @@
+<%- include('header', {logout : true})%>
+    <div class="ext-box for-fulltweet-main">
+        <div class="for-fulltweet-sub">            
+            <p><b>Date</b>: <%= tweet.date_of_tweet.toISOString().substr(0, 10) %></p>
+            <h2>                
+                <a href=<%= '/profile/' + tweet.user_id %> ><%= tweet.full_name %> &middot; @<%= tweet.user_name %></a> tweeted...
+                <span style="float: right;">
+                    <form action=<%= '/full_tweet/' + tweet.tweet_id %> method="post">
+                        <button>Like</button>
+                        <%= tweet.number_of_likes %>
+                    </form>
+                </span>
+            </h2>            
+            <div class="for-fulltweet-sub">
+                <p><%= tweet.tweet_msg %></p>
+            </div>     
+            <% if (rights) {%>                
+                <div style="float: right;">
+                    <button ><a href=<%= '/edit_tweet/' + tweet.tweet_id %>>EDIT TWEET</a></button>
+                    <button ><a href=<%= '/delete_tweet/' + tweet.tweet_id %>>DELETE TWEET</a></button>
+                </div>
+                <br>
+            <%}%>
+        </div>
+        <div class="for-fulltweet-sub cmt-box">   
+            <form action=<%= '/comment/' + tweet.tweet_id %> method="post">
+                <span><b>@<%= username %>, please comment here:</b></span>
+                <textarea name="newcomment" cols="30" rows="1" placeholder='Your comment here...'></textarea>
+                <button>Comment</button>
+            </form>                  
+        </div>
+        <hr>
+        <% for (let comment of comments) {%>
+            <div class="for-fulltweet-sub-cmt">
+                <p><b>Date</b>: <%= comment.date_of_comment.toISOString().substr(0, 10) %></p>
+                <h3>
+                    <a href=<%= '/profile/' + comment.user_id %> >@<%= comment.full_name %> &middot; @<%= comment.user_name %> </a> commented...
+                    <span style="float: right;">
+                        <form action=<%= '/comment/like/' + comment.comment_id %> method="post">
+                            <input type="hidden" name="tweet_id" value=<%= comment.tweet_id %>>
+                            <button>Like</button>
+                            <%= comment.number_of_likes %>
+                        </form>                 
+                    </span>
+                </h3>
+                <div class="for-fulltweet-sub">
+                    <p><%= comment.comment_data %></p>
+                </div>                
+            </div>    
+        <%}%>
+    </div>
+<%- include('footer')%>

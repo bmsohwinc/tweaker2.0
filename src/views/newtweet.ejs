@@ -1,0 +1,10 @@
+<%- include('header', {logout : true})%>
+<div class="ext-box for-root">
+    <h3>Go on @<%= username %>...</h3>
+    <form action="/new_tweet" method="post">
+        <textarea name="the_tweet" id="the_tweet" cols="30" rows="10" placeholder="Write your tweet here..."></textarea>
+        <br>
+        <button class="cmn-btn">Tweet</button>
+    </form>
+</div>
+<%- include('footer')%>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>.</title>
+        <link rel="icon" type="image/png" href="/imgs/logo.png"/>
+        <link rel="stylesheet" href="/css/styles.css">
+        
+        <script>
+            var asc1 = 1,
+                asc2 = 1,
+                asc3 = 1;
+
+            function sort_table(tbody, col, asc) {
+                var rows = tbody.rows,
+                    rlen = rows.length,
+                    arr = new Array(),
+                    i, j, cells, clen;
+                // fill the array with values from the table
+                for (i = 0; i < rlen; i++) {
+                    cells = rows[i].cells;
+                    clen = cells.length;
+                    arr[i] = new Array();
+                    for (j = 0; j < clen; j++) {
+                        arr[i][j] = cells[j].innerHTML;
+                    }
+                }
+                // sort the array by the specified column number (col) and order (asc)
+                arr.sort(function (a, b) {
+                    return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
+                });
+                // replace existing rows with new rows created from the sorted array
+                for (i = 0; i < rlen; i++) {
+                    rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="top-navbar">
+            <div class="top-navbar-kid">
+                <a href="/">
+                    <img src="/imgs/logo.png" alt="our-logo-da" class="logo">
+                </a>
+            </div>
+            <div class="top-navbar-kid logo-name">
+                <p><a href="/"><b>Tweaker</b></a></p>
+            </div>
+            <div class="top-navbar-kid">
+                <p><a href="/">Home</a></p>
+            </div>
+            <div class="top-navbar-kid">
+                <p><a href="/all_tweakers">Tweakeratti</a></p>
+            </div>
+            <div class="top-navbar-kid">
+                <p><a href="/new_tweet">Tweet</a></p>
+            </div>
+            <div class="top-navbar-kid">
+                <p><a href="/about">About</a></p>
+            </div>
+            <% if (logout) {%>
+                <div class="top-navbar-kid logout-btn">
+                    <form action="/logout" method="POST">
+                        <button>LOGOUT</button>
+                    </form>                    
+                </div>
+            <%}%>
+
+        </div>

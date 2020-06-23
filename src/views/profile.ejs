@@ -1,0 +1,144 @@
+<%- include('header', {logout : true})%>
+    <div class="ext-box for-user-profile">
+        <h2>
+            About @<%= payload.user_name %>
+            <span style="float: right;">
+                <%if (showEdit) {%>
+                    <button><a href="/edit_profile">Edit Profile</a></button>
+                <%} else if (showFollow) {%>
+                    <form action="/followornot" method="post">
+                        <input type="hidden" name="req_user_id" value=<%= payload.user_id %>>
+                        <input type="hidden" name="option" value="follow">
+                        <button>Follow</button>
+                    </form>
+                <%} else {%>
+                    <form action="/followornot" method="post">
+                        <input type="hidden" name="req_user_id" value=<%= payload.user_id %>>
+                        <input type="hidden" name="option" value="unfollow">
+                        <button>Unfollow</button>
+                    </form>
+                <%}%>
+            </span>
+        </h2>
+        <table style="width: 100%;">
+            <tr>
+                <td><b>Full Name</b></td>
+                <td><%= payload.full_name%></td>
+            </tr>
+            <tr>
+                <td><b>User Name</b></td>
+                <td><%= payload.user_name%></td>
+            </tr>
+            <tr>
+                <td><b>Place</td</b>
+                <td><%= payload.place%></td>
+            </tr>
+            <tr>
+                <td><b>Phone</td</b>
+                <td><%= payload.phone_number%></td>
+            </tr>
+            <tr>
+                <td><b>Describes</b></td>
+                <td><%= payload.about%></td>
+            </tr>
+        </table>
+    </div>
+    <div class="ext-box profile-second-box">
+        <div class="profile-second-box-sub">
+            <div class="profile-sub-box">
+                <h3>Followers (<%= followers.length%>)</h3>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th onclick="sort_table(tbody_followers, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">User Name</th>
+                            <th onclick="sort_table(tbody_followers, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Full Name</th>
+                            <th onclick="sort_table(tbody_followers, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"># of Followers</th>
+                        </tr>            
+                    </thead>
+                    <tbody id="tbody_followers">
+                        <%for (let follower of followers) {%>
+                            <tr>
+                                <td>
+                                    <a href=<%= '/profile/' + follower.user_id %>>@<%= follower.user_name %></a>
+                                </td>
+                                <td><%= follower.full_name %></td>
+                                <td><%= follower.count %></td>
+                            </tr>    
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="profile-sub-box">
+                <h3>Following (<%= followings.length%>)</h3>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th onclick="sort_table(tbody_followings, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">User Name</th>
+                            <th onclick="sort_table(tbody_followings, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Full Name</th>
+                            <th onclick="sort_table(tbody_followings, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;"># of Followers</th>
+                        </tr>            
+                    </thead>  
+                    <tbody id="tbody_followings">
+                        <%for (let following of followings) {%>
+                            <tr>
+                                <td>
+                                    <a href=<%= '/profile/' + following.user_id %>>@<%= following.user_name %></a>
+                                </td>
+                                <td><%= following.full_name %></td>
+                                <td><%= following.count %></td>
+                            </tr>    
+                        <%}%>
+                    </tbody>                  
+                </table>
+            </div>
+        </div>
+        
+        <div class="profile-second-box-sub">
+            <div class="profile-sub-box">
+                <h3>Tweets (<%= tweets.length%>)</h3>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th onclick="sort_table(tbody_tweets, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Tweet</th>
+                            <th onclick="sort_table(tbody_tweets, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Date</th>
+                            <th onclick="sort_table(tbody_tweets, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Likes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_tweets">
+                        <% for (let tweet of tweets) {%>
+                            <tr>
+                                <td><a href=<%= '/full_tweet/' + tweet.tweet_id%>><%= tweet.tweet_msg.substr(0, 25)%>...</a></td>
+                                <td><%= tweet.date_of_tweet.toISOString().slice(0, 10) %></td>
+                                <td><%= tweet.number_of_likes %></td>
+                            </tr>    
+                        <%}%>
+                    </tbody>                    
+                </table>                
+            </div>
+            <div class="profile-sub-box">
+                <h3>Comments (<%= comments.length%>)</h3>
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th onclick="sort_table(tbody_comments, 0, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Comment</th>
+                            <th onclick="sort_table(tbody_comments, 1, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Date</th>
+                            <th onclick="sort_table(tbody_comments, 2, asc1); asc1 *= -1; asc2 = 1; asc3 = 1;">Likes</th>
+                        </tr>
+                    </thead>   
+                    <tbody id="tbody_comments">
+                        <% for (let comment of comments) {%>
+                            <%if (comment.comment_data) {%>
+                                <tr>
+                                    <td><a href=<%= '/full_tweet/' + comment.tweet_id%>><%= comment.comment_data.substr(0, 25)%>...</a></td>
+                                    <td><%= comment.date_of_comment.toISOString().slice(0, 10) %></td>
+                                    <td><%= comment.number_of_likes %></td>
+                                </tr>    
+                            <%}%>
+                        <%}%>
+                    </tbody>                 
+                </table>
+            </div>
+        </div>
+        
+    </div>
+<%- include('footer')%>

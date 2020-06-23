@@ -1,0 +1,32 @@
+<%- include('header', {logout : true})%>
+<div class="ext-box all-users-ext">
+    <h2>All Tweakers</h2>
+    <div class="all-users">
+        <%for (let user of users) {%>
+            <div class="all-users-sub-box">
+                <h3>
+                    <a href=<%= '/profile/' + user.user_id %>>@<%= user.user_name %></a>
+                </h3>
+                <table>
+                    <tr>
+                        <td><b>Full Name</b></td>
+                        <td><%= user.full_name %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Place</b></td>
+                        <td><%= user.place %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Describes</b></td>
+                        <td><%= user.about %></td>
+                    </tr>
+                    <tr>
+                        <td><b># of Followers</b></td>
+                        <td><%= user.followers_count %></td>
+                    </tr>
+                </table>
+            </div>
+        <%}%>
+    </div>
+</div>
+<%- include('footer')%>

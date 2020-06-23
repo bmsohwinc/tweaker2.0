@@ -1,0 +1,239 @@
+body {
+    font-family: monospace;
+    padding: 0;
+    margin: 0;
+}
+
+div {
+    border-radius: 5px;
+}
+
+button {
+    border-radius: 5px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
+td {
+    padding: 4px;
+}
+
+/* header */
+.top-navbar {
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.top-navbar-kid {
+    display: inline;
+    padding: 5px;
+    margin: 5px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.logout-btn {
+    position: absolute;
+    right: 10px;
+}
+
+/* ---------------------- */
+
+/* general content box */
+.ext-box {
+    margin: 1rem auto;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* ---------------------- */
+
+/* for the root box */
+.for-root {
+    width: 50%;
+    text-align: center;
+}
+
+/* ---------------------- */
+
+/* for login box */
+.cmn-btn {
+    margin: 1rem auto;
+}
+
+/* ---------------------- */
+
+/* for register box */
+.for-register {
+    width: 50%;
+}
+
+/* ---------------------- */
+
+/* for user profile */
+.for-user-profile {
+    width: 50%;
+}
+
+.profile-second-box {
+    margin: 10px;
+}
+
+.profile-second-box-sub {
+    display: flex;
+}
+
+.profile-sub-box {
+    text-align: center;
+    margin: 1rem auto;
+    padding: 10px;
+    border: 1px solid black;
+    width: 45%;
+    height: 30vh;
+    overflow-y: scroll;
+}
+
+.profile-sub-box > h3 {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+}
+
+.delete-btn {
+    background-color: pink;
+    float: right;
+}
+
+/* ---------------------- */
+
+/* for all users page */
+.all-users-ext {
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.all-users-ext > h2 {
+    text-align: center;
+}
+
+.all-users {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.all-users-sub-box {
+    width: 30%;
+    margin: 10px auto;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.all-users-sub-box > h3 {
+    text-align: center;
+}
+
+/* ---------------------- */
+
+/* for full tweet page */
+.for-fulltweet-main {
+    width: 80%;
+}
+
+.for-fulltweet-sub {
+    border: 1px solid black;
+    margin: 1rem auto;
+    padding: 1rem;    
+}
+
+.for-fulltweet-sub-tweetmsg {
+    border: 1px solid black;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.for-fulltweet-sub-cmt {
+    border: 1px solid black;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 60%;
+}
+
+.edit-btn {
+    float: right;
+    background-color: darkgrey;
+}
+
+/* ---------------------- */
+
+/* home page */
+.home-box-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.home-box-main-left {
+    height: 70vh;
+    overflow-y: scroll;
+    width: 50%;
+    margin: 1rem;
+    padding: 5px 1rem;
+    border: 1px solid black;
+}
+
+.home-box-main-right {
+    width: 43%;
+    margin: 0;
+    padding: 0;
+}
+
+.home-box-sub {
+    height: 31vh;
+    overflow-y: scroll;
+    margin: 1rem;
+    padding: 5px 1rem;
+    border: 1px solid black;
+}
+
+.to-center {
+    text-align: center;
+}
+
+.home-box-twt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.twt-meta-span {
+    width: 33%;
+    text-align: center;
+}
+
+
+/* ---------------------- */
+
+/* for about page */
+.about-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.about-box-sub {
+    margin: 1rem;
+    padding: 5px 1rem;
+    border: 1px solid black;
+}

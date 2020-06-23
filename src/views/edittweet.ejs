@@ -1,0 +1,25 @@
+<%- include('header', {logout : true})%>
+<div class="ext-box for-root">
+    <h3>Go on @<%= tweet.user_name %>, edit the tweet...</h3>
+    <form action=<%= "/edit_tweet/" + tweet.tweet_id %> method="post">  
+        <table style="width: 100%;">
+            <tr>
+                <td><b>Date posted</b></td>
+                <td><%= tweet.date_of_tweet.toISOString().substr(0, 10) %></td>
+            </tr>
+            <tr>
+                <td><b># of Likes</b></td>
+                <td><%= tweet.number_of_likes %></td>
+            </tr>
+            <tr>
+                <td><b>Your Tweet:</b></td>
+                <td>
+                    <textarea name="the_tweet" id="the_tweet" cols="30" rows="10"><%= tweet.tweet_msg %></textarea>
+                </td>
+            </tr>
+        </table>        
+        <br>
+        <button class="cmn-btn">Edit Tweet</button>
+    </form>
+</div>
+<%- include('footer')%>
