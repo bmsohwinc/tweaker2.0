@@ -63,7 +63,7 @@ Here's the basic philosophy:
     - Your node_modules are installed
     - DB is ready
 10. So, open up the VS Code (or any IDE or no IDE also!) terminal in the project dir; `cd` into the `src` folder; then run
-    `nodemone index.js`.
+    `nodemon index.js`.
 11. This will start the tweaker server on your local maching on PORT 3000.
 12. Start playing with the site in your fav browser
 
